@@ -1,18 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import Map from "../components/Map";
+import { useContext } from "react";
 
 export default function () {
   const { movieid } = useParams();
-  const [movie, setmovie] = useState([]);
-  let url = `https://www.myapifilms.com/imdb/idIMDB?idIMDB=${movieid}&token=dc7bac7d-9178-4622-8ab3-fcdaf3c50ecf&format=json&language=en-us&aka=0&business=0&seasons=0&seasonYear=0&technical=0&trailers=0&movieTrivia=0&awards=0&moviePhotos=0&movieVideos=0&actors=0&biography=0&uniqueName=0&filmography=0&bornDied=0&starSign=0&actorActress=0&actorTrivia=0&similarMovies=1&goofs=0&keyword=0&quotes=0&fullSize=1&companyCredits=0&filmingLocations=1&directors=1&writers=1`;
-  axios.get(url).then((response) => {
-    setmovie(response.data.data.movies[0]);
-  });
-  
+
+  const [loc, setlocs] = useState([{ adress: "", scene: "",lat:'',lon:'',id:''}]);
+  useEffect(() => {
+    const fetchdata = async () => {
+      let url = `http://localhost:4000/locations?id=${movieid}`;
+      let newlocarray = [];
+      await axios.get(url).then((response) => {
+        response.data
+          .filter((loca) => loca.adress != "" && loca.scene != "")
+          .map((loca) => {
+            loca.id = Math.floor(Math.random() * 10000);
+            loca.lat = '';
+            loca.lon = '';
+            loca.adress = loca.adress.replace("\n", "");
+            loca.scene = loca.scene.replace("\n", "");
+            loca.scene = loca.scene.replace("(", "");
+            loca.scene = loca.scene.replace(")", "");
+            newlocarray.push(loca);
+          });
+      });
+      setlocs(newlocarray);
+    };
+    fetchdata().catch((er) => console.log(er));
+  }, []);
+
   return (
-    <div>
-      <h1>{movie.title}</h1>
+    <div className="">
+      {loc[0].adress!='' && <Map locations={loc}></Map>}
     </div>
   );
 }
