@@ -1,53 +1,37 @@
-const express=require('express')
-const cors=require('cors')
-const axios=require('axios')
-const pretty=require('pretty')
-const cheerio = require('cheerio')
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const axios = require("axios");
+const pretty = require("pretty");
+const cheerio = require("cheerio");
 
-const app=express()
-app.use(cors())
+const app = express();
+app.use(cors());
 
-app.get('/locations',async (req,res)=>{
-    const locations = [];
-    const url = `https://www.imdb.com/title/${req.query.id}/locations#filming_locations`;
-    try {
-      const { data } = await axios.get(url);
-      const $ = cheerio.load(data);
-      const listItems = $("#filming_locations div");
-      listItems.each((idx, el) => {
-        const location = { adress: "", scene: "" };
-        location.adress = $(el).children("dt").children("a").text();
-        location.scene = $(el).children("dd").text();
-        locations.push(location);
-      });
-  
-    } catch (err) {
-      console.error(err);
-    }
-  res.send(locations)
-})
+//routes
 
+app.get("/similar", async (req, res) => {
+  const url = `https://api.themoviedb.org/3/movie/${req.query.id}/similar?api_key=${process.env.TMDB_API_TOKEN}&language=en-US&page=1`;
 
+  await axios.get(url).then((result) => {
+    res.send(result.data.results);
+  });
+});
 
-// async function scrapeData() {
-//   try {
-//     const { data } = await axios.get(url);
-//     const $ = cheerio.load(data);
-//     const listItems = $("#filming_locations div");
-//     const locations = [];
-//     listItems.each((idx, el) => {
-//       const location = { adress: "", scene: "" };
-//       location.adress = $(el).children("dt").children("a").text();
-//       location.scene = $(el).children("dd").text();
-//       locations.push(location);
-//     });
-//     console.dir(locations);
+//todo: /simrecom return an array of similar and recomandations of a given movies id [{id,rating}]
 
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
+app.get("/recommendations", (req, res) => {
+  const movieavis = req.query.movielist;
+  let movie_list = [];
+  movieavis.forEach( async (movie) => {
+    movie.rate == 1 || movie.rate == 0
+      ? await axios.get(`/simrecom?id=${movie.id}`).then((result) => {
+          result.forEach((Element) => movie_list.push(Element));
+        })
+      : null;
+  });
+});
 
-app.listen(4000,() => {
-    console.log(`listening on port 4000`)
-  })
+app.listen(4000, () => {
+  console.log(`listening on port 4000`);
+});

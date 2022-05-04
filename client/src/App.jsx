@@ -2,7 +2,8 @@ import './App.css'
 import { Routes, Route,BrowserRouter } from "react-router-dom";
 import Header from './components/Header'
 import Home from './pages/Home'
-import MapPage from './pages/MapPage'
+import Similar from './pages/Similar'
+import ByMovieRes from './pages/ByMovieRes';
 function App() {
 
   return (
@@ -11,7 +12,8 @@ function App() {
     <Header />
     <Routes>
       <Route path='/' element={<Home/>}></Route>
-      <Route path='/map/:movieid' element={<MapPage/>}></Route>
+      <Route path='/bymv-result' element={<ByMovieRes/>}></Route>
+      <Route path='/similar/:movieid' element={<Similar/>}></Route>
     </Routes>
     </BrowserRouter>
     </div>
