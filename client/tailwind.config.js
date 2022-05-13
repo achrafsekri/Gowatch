@@ -6,12 +6,15 @@ module.exports = {
         85: "89vh",
         15: "11vh",
       },
+      colors: {
+        primary:"#C84B31"
+      },
     },
     backgroundColor: (theme) => ({
       ...theme("colors"),
-      primary: "#111827",
-      secondary: "#272011",
-      danger: "#e3342f",
+      primary: "rgb(17 24 39)",
+      secondary: "#C84B31",
+      danger: "#B20600",
     }),
   },
   plugins: [],

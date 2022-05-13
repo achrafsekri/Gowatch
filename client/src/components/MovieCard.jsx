@@ -1,25 +1,29 @@
-import React from 'react'
-import {Link} from "react-router-dom"
-import axios from 'axios'
-import { useEffect, useState} from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Genre } from "../context/genre";
 
 function MovieCard(props) {
-  let posterurl=`https://image.tmdb.org/t/p/w500${props.posterurl}`
-  //get imdb id
-  
-  // let getid=`https://api.themoviedb.org/3/movie/${props.id}/external_ids?api_key=f278a9350a4a2d4ad58f9186c9142f05`
-  // const [imdbid, setimdbid] = useState('');
-  // useEffect(() => {
-  //   axios.get(getid).then(res=>{
-  //     setimdbid(res.data.imdb_id)
-  //   })
-  // }, [])
-  
+  let posterurl = `https://image.tmdb.org/t/p/w500${props.posterurl}`;
+  const { genre, setgenre } = useContext(Genre);
+
+  const handleselectmovie = () => {
+    setgenre(props.genre);
+  };
+
   return (
-    <Link to={`/similar/${props.id}`} className='w-full rounded-md cursor-pointer shadow-lg shadow-gray-900 hover:opacity-80	' >
-      <img src={posterurl} alt="poster" className={props.posterurl==null?"hidden":"w-full rounded-md"}/>
+    <Link
+      to={`/similar/${props.id}`}
+      onClick={handleselectmovie}
+      className="w-full rounded-md cursor-pointer shadow-lg shadow-gray-900 hover:opacity-80	"
+    >
+      <img
+        src={posterurl}
+        alt="poster"
+        className={props.posterurl == null ? "hidden" : "w-full rounded-md"}
+      />
     </Link>
-  )
+  );
 }
 
-export default MovieCard
+export default MovieCard;

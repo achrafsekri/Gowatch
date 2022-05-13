@@ -1,32 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
-import searchI from "../assets/searchI.svg";
 import MovieCard from "../components/MovieCard";
 
 export default function Home() {
-  const [movie, setmovie] = useState("");
   const [result, setresult] = useState([]);
   const [display, setdisplay] = useState("none");
 
-  const navigate = useNavigate();
-  const handlechange = (e) => {
+  const handlesearch = (e) => {
     e.preventDefault();
-    setmovie(e.target.value);
-  };
-
-  const handlesearch = () => {
     let tmdbkey = "f278a9350a4a2d4ad58f9186c9142f05";
-    let displayurl = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbkey}&query=${movie}&page=1&include_adult=false`;
+    let displayurl = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbkey}&query=${e.target.value}&page=1&include_adult=false`;
     setdisplay("display");
     axios.get(displayurl).then((response) => {
       setresult(response.data.results);
-      console.log(response.data.results);
     });
   };
 
   return (
-    <div className="max-w-screen min-h-screen bg-gray-900	flex flex-col items-center pt-20">
+    <div className="max-w-screen min-h-screen bg-primary flex flex-col items-center pt-20">
       <div className=" w-3/4 flex flex-col justify-center items-center gap-8">
         <h1 className="text-white text-5xl font-bold tracking-wide text-center leading-relaxed">
           Type a movie or a tv show's name and get recomondations
@@ -36,17 +27,16 @@ export default function Home() {
             type="text"
             className="outline-none bg-white h-full w-full p-3 rounded"
             placeholder="Write any movie's name"
-            onChange={handlechange}
+            onChange={handlesearch}
           />
           <a
             onClick={handlesearch}
             className="flex items-center justify-center p-4 rounded-l-md cursor-pointer hover:bg-slate-200"
           >
-            {/* <img src={searchI} alt="search icon" className="w-7 h-7" /> */}
-            <span class="material-icons ">search</span>
+            <span className="material-icons ">search</span>
           </a>
         </div>
-        <div className={display == "none" && "hidden"}>
+        <div className={display == "none" ? "hidden" : null}>
           <h1 className="text-white opacity-80 text-lg p-4 text-left">
             Select the movie or tv show you are looking for
           </h1>
@@ -55,6 +45,7 @@ export default function Home() {
               <MovieCard
                 key={film.id}
                 id={film.id}
+                genre={film.genre_ids}
                 posterurl={film.poster_path}
                 title={film.title}
               />
