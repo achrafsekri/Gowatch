@@ -12,7 +12,8 @@ module.exports = {
     },
     backgroundColor: (theme) => ({
       ...theme("colors"),
-      primary: "rgb(17 24 39)",
+      background_am: "rgb(17 24 39)",
+      background_pm: "#212121",
       secondary: "#C84B31",
       danger: "#B20600",
     }),
