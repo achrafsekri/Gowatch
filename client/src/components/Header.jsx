@@ -5,7 +5,7 @@ import Darkmode from "./Darkmode";
 function Header() {
   const location = useLocation();
   return (
-    <div className=" h-15 p-7 pl-11 pr-11 flex bg-primary justify-between">
+    <div className=" h-15 p-7 pl-11 pr-11 flex bg-background_pm justify-between">
       <div>
         <Link to="/" className="text-white ">
           GO WATCH

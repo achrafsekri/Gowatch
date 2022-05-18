@@ -5,6 +5,7 @@ import MovieCard from "../components/MovieCard";
 export default function Home() {
   const [result, setresult] = useState([]);
   const [display, setdisplay] = useState("none");
+  
 
   const handlesearch = (e) => {
     e.preventDefault();
@@ -17,21 +18,22 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-screen min-h-screen bg-primary flex flex-col items-center pt-20">
+    <div className="max-w-screen min-h-screen bg-background_pm flex flex-col items-center pt-20">
       <div className=" w-3/4 flex flex-col justify-center items-center gap-8">
         <h1 className="text-white text-5xl font-bold tracking-wide text-center leading-relaxed">
           Type a movie or a tv show's name and get recomondations
         </h1>
-        <div className="bg-white w-3/4 h-12 flex justify-between rounded">
+        <div className="bg-white w-3/4 h-12 flex justify-between rounded shadow-pm">
           <input
             type="text"
-            className="outline-none bg-white h-full w-full p-3 rounded"
+            className="outline-none bg-white h-full w-full p-3 rounded "
             placeholder="Write any movie's name"
             onChange={handlesearch}
+            onKeyDown={e=>e.key=='Enter'&&handlesearch()}
           />
           <a
             onClick={handlesearch}
-            className="flex items-center justify-center p-4 rounded-l-md cursor-pointer hover:bg-slate-200"
+            className="flex items-center justify-center p-4 rounded-l-md cursor-pointer "
           >
             <span className="material-icons ">search</span>
           </a>

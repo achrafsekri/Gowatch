@@ -2,6 +2,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        'pm': '15px 15px 30px #191919,-15px -15px 30px #292929',
+      },
       height: {
         85: "89vh",
         15: "11vh",

@@ -1,0 +1,13 @@
+.card {
+    border-radius:5px ;
+    background-color: #212121;
+    box-shadow: 15px 15px 30px #191919,
+                 -15px -15px 30px #292929;
+    transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 1.5s,
+                 transform cubic-bezier(0.075, 0.82, 0.165, 1) 1.5s;
+   }
+   
+   .card:hover {
+    transform: scale(1.01);
+   }
+   

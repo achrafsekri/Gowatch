@@ -56,23 +56,23 @@ function MovieCarasoul(props) {
     ]);
   };
   return (
-    <div className="min-w-4/6 w-4/6 h-5/6 min-h-5/6 bg-slate-200 flex justify-center items-center rounded-md">
+    <div className="min-w-4/6 w-4/6 h-5/6 min-h-5/6 bg-background_pm flex justify-center items-center rounded-md shadow-pm">
       {carasoul == -1 && (
         <div className="w-3/4 ">
-          <h1 className="text-gray-900 font-bold text-3xl max-w-4/6">
+          <h1 className="text-white font-bold text-3xl max-w-4/6">
             We need some more information to optimize your result, here are some
             similar movies, tell us which ones you liked and which ones you
             didn't.
           </h1>
           <div className="flex place-self-end mt-5 gap-10">
             <button
-              className="bg-transparent hover:bg-gray-900 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-900 hover:border-transparent rounded"
+              className="bg-transparent  text-white font-semibold hover:shadow-pm py-2 px-4 border border-white rounded"
               onClick={() => setcarasoul(0)}
             >
               {" "}
               lets go!
             </button>
-            <button className="bg-transparent hover:bg-gray-900 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-900 hover:border-transparent rounded">
+            <button className="bg-transparent  text-white font-semibold hover:shadow-pm py-2 px-4 border border-white rounded">
               {" "}
               show me unoptimized
             </button>
@@ -85,12 +85,12 @@ function MovieCarasoul(props) {
             <img
               src={`https://image.tmdb.org/t/p/w500${similarmovies[carasoul].poster_path}`}
               alt="poster"
-              className=" h-5/6 rounded-md border-slate-900 border-2"
+              className=" h-5/6 rounded-md border-white border-2 shadow-pm"
             />
           </div>
           <div className="flex flex-col gap-7 flex-1 items-center justify-center">
             <div className="flex w-3/4">
-              <h1 className="text-gray-900 font-semibold">
+              <h1 className="text-white font-semibold">
                 movie {carasoul + 1} :{" "}
                 <a
                   href={`https://imdb.com/${similarmovies[carasoul].id}`}
@@ -103,19 +103,19 @@ function MovieCarasoul(props) {
             </div>
             <button
               onClick={likehandle}
-              className="bg-transparent w-3/4 hover:bg-green-700 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-900 hover:border-transparent rounded"
+              className="bg-transparent w-3/4 hover:bg-green-700 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded"
             >
               I ve seen it and I like it{" "}
             </button>
             <button
               onClick={unlikelikehandle}
-              className="bg-transparent w-3/4 hover:bg-gray-700 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-900 hover:border-transparent rounded"
+              className="bg-transparent w-3/4 hover:bg-gray-700 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded"
             >
               I ve never seen it{" "}
             </button>
             <button
               onClick={neverhandle}
-              className="bg-transparent w-3/4 hover:bg-red-600 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-900 hover:border-transparent rounded"
+              className="bg-transparent w-3/4 hover:bg-red-600 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded"
             >
               I ve seen it and I didn't like it
             </button>
