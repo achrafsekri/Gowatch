@@ -8,6 +8,6 @@
    }
    
    .card:hover {
-    transform: scale(1.01);
+    opacity: 95%;
    }
    

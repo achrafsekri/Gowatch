@@ -10,7 +10,7 @@ function App() {
 const [genre,setgenre]=useState(null)
   return (
     <Genre.Provider value={{genre,setgenre}}>
-    <div className='font-mono antialiased'>
+    <div className='font-mono antialiased scrollbar'>
     <BrowserRouter>
     <Header />
     <Routes>

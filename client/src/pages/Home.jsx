@@ -18,31 +18,31 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-screen min-h-screen bg-background_pm flex flex-col items-center pt-20">
-      <div className=" w-3/4 flex flex-col justify-center items-center gap-8">
-        <h1 className="text-white text-5xl font-bold tracking-wide text-center leading-relaxed">
+    <div className="flex flex-col items-center min-h-screen pt-20 overflow-auto max-w-screen bg-background_pm scrollbar">
+      <div className="flex flex-col items-center justify-center w-3/4 gap-8 scrollbar ">
+        <h1 className="text-5xl font-bold leading-relaxed tracking-wide text-center text-white scrollbar">
           Type a movie or a tv show's name and get recomondations
         </h1>
-        <div className="bg-white w-3/4 h-12 flex justify-between rounded shadow-pm">
+        <div className="flex justify-between w-3/4 h-12 bg-white rounded shadow-pm scrollbar">
           <input
             type="text"
-            className="outline-none bg-white h-full w-full p-3 rounded "
+            className="w-full h-full p-3 bg-white rounded outline-none "
             placeholder="Write any movie's name"
             onChange={handlesearch}
             onKeyDown={e=>e.key=='Enter'&&handlesearch()}
           />
           <a
             onClick={handlesearch}
-            className="flex items-center justify-center p-4 rounded-l-md cursor-pointer "
+            className="flex items-center justify-center p-4 cursor-pointer rounded-l-md "
           >
             <span className="material-icons ">search</span>
           </a>
         </div>
-        <div className={display == "none" ? "hidden" : null}>
-          <h1 className="text-white opacity-80 text-lg p-4 text-left">
+        <div className={display == "none" ? "hidden" : "scrollbar"}>
+          <h1 className="p-4 text-lg text-left text-white opacity-80">
             Select the movie or tv show you are looking for
           </h1>
-          <div className="w-full p-4 grid grid-cols-4 gap-4 place-content-center ">
+          <div className="grid w-full grid-cols-4 gap-4 p-4 place-content-center scrollbar">
             {result.map((film) => (
               <MovieCard
                 key={film.id}
