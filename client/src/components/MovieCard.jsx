@@ -16,12 +16,12 @@ function MovieCard(props) {
     <Link
       to={`/similar/${props.id}`}
       onClick={handleselectmovie}
-      className="card"
+      className="bg-background_am dark:bg-background_pm shadow-am dark:shadow-pm"
     >
       <img
         src={posterurl}
         alt="poster"
-        className={props.posterurl == null ? "hidden" : "card"}
+        className={props.posterurl == null ? "hidden h-inherit w-inherit" : "card"}
       />
     </Link>
   );
