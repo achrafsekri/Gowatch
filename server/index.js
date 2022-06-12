@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/movie_info", (req, res) => {
-  const api = `https://api.themoviedb.org/3/movie/${req.query.id}?api_key=${process.env.TMDB_API_TOKEN}&language=en-US`;
+  const api = `https://api.themoviedb.org/3/movie/${req.query.id}?api_key=f278a9350a4a2d4ad58f9186c9142f05&language=en-US`;
   axios.get(api).then((response) => res.send(response.data));
 });
 
