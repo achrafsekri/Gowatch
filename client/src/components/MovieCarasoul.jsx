@@ -25,8 +25,7 @@ function MovieCarasoul(props) {
       await axios
         .get(`http://localhost:4000/similar?id=${props.movieid}`)
         .then((response) => {
-          console.log(response.data)
-          response.data!=[]?setsimilarmovies(response.data):axios.get(`http://localhost:4000/similar?id=${props.movieid}`).then(res=>setsimilarmovies(res.data))
+          response.data!=[]?setsimilarmovies(response.data):axios.get(`http://localhost:4000/unoptimized_similars?id=${props.movieid}`).then(res=>setsimilarmovies(res.data))
           
         }).then(r=>setloading(false));
       

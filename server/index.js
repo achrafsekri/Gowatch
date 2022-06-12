@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const { remove } = require("cheerio/lib/api/manipulation");
 
 const app = express();
 app.use(cors());
@@ -21,6 +20,10 @@ const exist = (currentMovie, similarMovie) => {
   }
   return true;
 };
+
+app.get("/", (req, res) => {
+  res.send("server started");
+});
 
 app.get("/movie_info", (req, res) => {
   const api = `https://api.themoviedb.org/3/movie/${req.query.id}?api_key=${process.env.TMDB_API_TOKEN}&language=en-US`;
@@ -126,6 +129,6 @@ app.get("/recommendations", async (req, res) => {
   // console.log(original_genre);
 });
 
-app.listen(4000, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log(`listening on port 4000`);
 });
